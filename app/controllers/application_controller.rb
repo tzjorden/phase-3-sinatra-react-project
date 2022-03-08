@@ -11,6 +11,18 @@ class ApplicationController < Sinatra::Base
     expense.to_json
   end
 
+  
+  get "/due_date" do 
+    expense = Expense.all
+    expense.to_json(only: [:due_date])
+  end
+  
+
+  get "/total_expense" do
+    expense = Expense.all.sum(:monthly)
+    expense.to_json
+  end
+
   get "/display_all_expenses" do
     expense = Expense.all
     expense.to_json
